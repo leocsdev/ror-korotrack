@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_17_034304) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_17_042314) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "attendance_dates", force: :cascade do |t|
+    t.string "attendance_type", default: "ensayo", null: false
+    t.datetime "created_at", null: false
+    t.date "date", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendance_type"], name: "index_attendance_dates_on_attendance_type"
+    t.index ["date"], name: "index_attendance_dates_on_date", unique: true
+  end
 
   create_table "members", force: :cascade do |t|
     t.boolean "active", default: true, null: false
