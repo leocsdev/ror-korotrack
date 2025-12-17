@@ -16,6 +16,8 @@
 class AttendanceDate < ApplicationRecord
   ATTENDANCE_TYPES = %w[ensayo extra_ensayo pagsamba].freeze
 
+  has_many :attendances, dependent: :destroy
+
   validates :date, presence: true, uniqueness: true
   validates :attendance_type, inclusion: { in: ATTENDANCE_TYPES }
 end
