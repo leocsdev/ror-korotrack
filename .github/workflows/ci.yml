@@ -2,8 +2,14 @@ name: CI
 
 on:
   pull_request:
-  push:
-    branches: [ main ]
+  # Only run on push to main for releases, not every commit
+  # push:
+  #   branches: [ main ]
+
+# Cancel outdated workflow runs when new commits are pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   scan_ruby:
@@ -20,10 +26,10 @@ jobs:
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
-      
+
       - name: Scan for known security vulnerabilities in gems used
         run: bin/bundler-audit
-      
+
   scan_js:
     runs-on: ubuntu-latest
 
