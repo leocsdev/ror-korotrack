@@ -19,6 +19,8 @@ class Member < ApplicationRecord
   KAPISANAN = %w[buklod kadiwa binhi].freeze
   VOICE_PARTS = %w[soprano alto tenor bass].freeze
 
+  has_many :attendances, dependent: :restrict_with_error
+
   validates :first_name, :last_name, presence: true
   validates :kapisanan, inclusion: { in: KAPISANAN }
   validates :voice_part, inclusion: { in: VOICE_PARTS }
