@@ -11,6 +11,6 @@ class CreateAttendances < ActiveRecord::Migration[8.1]
     # Prevents duplicate attendance records
     # Enforces relational integrity
     # Makes race conditions harmless
-    add_index :attendances, [:member_id, :attendance_date_id], unique: true, name: "index_attendances_on_member_and_date"
+    add_index :attendances, [ :member_id, :attendance_date_id ], unique: true, name: "index_attendances_on_member_and_date"
   end
 end
