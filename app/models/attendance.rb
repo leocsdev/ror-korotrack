@@ -21,6 +21,10 @@
 #  fk_rails_...  (member_id => members.id)
 #
 class Attendance < ApplicationRecord
+  STATUSES = %w[present absent].freeze
+
   belongs_to :member
   belongs_to :attendance_date
+
+  validates :status, presence: true, inclusion: { in: STATUSES }
 end
