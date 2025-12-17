@@ -14,4 +14,8 @@
 #  index_attendance_dates_on_date             (date) UNIQUE
 #
 class AttendanceDate < ApplicationRecord
+  ATTENDANCE_TYPES = %w[ensayo extran_ensayo pagsamba].freeze
+
+  validates :date, presence: true, uniqueness: true
+  validates :attendance_type, inclusion: { in: ATTENDANCE_TYPES }
 end
