@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member: one
+  attendance_date: one
+  status: MyString
+
+two:
+  member: two
+  attendance_date: two
+  status: MyString
