@@ -16,4 +16,16 @@
 #  index_members_on_active  (active)
 #
 class Member < ApplicationRecord
+  KAPISANAN = %w[buklod kadiwa binhi].freeze
+  VOICE_PARTS = %w[soprano alto tenor bass].freeze
+
+  validates :first_name, :last_name, presence: true
+  validates :kapisanan, inclusion: { in: KAPISANAN }
+  validates :voice_part, inclusion: { in: VOICE_PARTS }
+
+  scope :active, -> { where(active: true) }
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
