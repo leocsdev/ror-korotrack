@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "attendances#show"
 
-  resource :attendance, only: [:show]
+  resource :attendance, only: [ :show ]
 end
