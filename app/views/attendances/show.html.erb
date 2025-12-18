@@ -1,4 +1,26 @@
-<div>
-  <h1 class="font-bold text-4xl">Attendances#show</h1>
-  <p>Find me in app/views/attendances/show.html.erb</p>
-</div>
+<h1 class="text-2xl font-bold">
+  Attendance — <%= @attendance_date.date.strftime("%B %d, %Y") %>
+</h1>
+
+<p class="text-sm text-gray-500 mb-4">
+  <%= @attendance_date.attendance_type.humanize %>
+</p>
+
+<% @members.group_by(&:voice_part).each do |voice_part, members| %>
+  <h2 class="mt-6 font-semibold text-lg">
+    <%= voice_part.capitalize %>
+  </h2>
+
+  <ul class="divide-y">
+    <% members.each do |member| %>
+      <% attendance = member.attendances.find { |a| a.attendance_date_id == @attendance_date.id } %>
+
+      <li class="flex justify-between py-2">
+        <span><%= member.full_name %></span>
+        <span class="<%= attendance.present? ? 'text-green-600' : 'text-red-600' %>">
+          <%= attendance.status %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
