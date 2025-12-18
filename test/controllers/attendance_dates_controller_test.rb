@@ -7,7 +7,7 @@ class AttendanceDatesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get create" do
-    post attendance_dates_url
-    assert_response :success
+    post attendance_dates_url, params: { date: "2025-12-17", attendance_type: "ensayo" }
+    assert_response :redirect
   end
 end
